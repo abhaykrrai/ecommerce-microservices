@@ -2,6 +2,20 @@ spring:
   application:
     name: api-gateway
 
+  cloud:
+    gateway:
+      routes:
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/product/**
+
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
 
 server:
   port: 8765
@@ -11,4 +25,10 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
   instance:
-    instance-id: localhost
+    hostname: localhost
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
