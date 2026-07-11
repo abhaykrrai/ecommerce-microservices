@@ -17,10 +17,14 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     Optional<Product> findByName(String name);
 
-    @Query("select p from Product p where p.name like %:keyword%")
+    @Query("""
+       SELECT p
+       FROM Product p
+       WHERE LOWER(p.category) LIKE LOWER(CONCAT('%', :keyword, '%'))
+       """)
     List<Product> findProductByCategory(@Param("keyword") String keyword);
 
-    Optional<Product> findByNameAndAdmin(String name, Long admin);
+    Optional<Product> findByNameAndAdminId(String name, Long adminId);
 
-    List<Product> findByAdmin(Long admin);
+    List<Product> findByAdminId(Long adminId);
 }
