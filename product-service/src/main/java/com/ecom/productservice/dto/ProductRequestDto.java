@@ -1,31 +1,14 @@
-package com.ecom.productservice.entity;
+package com.ecom.productservice.dto;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+public class ProductRequestDto {
 
-
-@Entity
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @NotNull
     private String name;
 
     private String description;
 
-    @NotNull
     private double price;
 
-    @Min(0)
     private long quantity;
-
-//    @ManyToOne
-//    @JoinColumn(name="admin_id")
-    private Long adminId;
 
     private String category;
 
@@ -57,14 +40,6 @@ public class Product {
         return quantity;
     }
 
-    public Long getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(Long adminId) {
-        this.adminId = adminId;
-    }
-
     public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
@@ -77,3 +52,4 @@ public class Product {
         this.category = category;
     }
 }
+
