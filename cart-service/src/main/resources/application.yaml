@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: cart-service
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cart_db
+    username: postgres
+    password: abhay
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8083
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+      hostname: localhost
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
