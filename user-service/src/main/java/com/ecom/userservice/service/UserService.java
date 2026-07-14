@@ -96,7 +96,7 @@ public class UserService {
     public UserResponseDto entityToResponse(User user) {
 
         UserResponseDto dto = new UserResponseDto();
-
+        dto.setId(user.getId());
         dto.setName(user.getName());
         dto.setEmail(user.getEmail());
         dto.setRole(user.getRole());

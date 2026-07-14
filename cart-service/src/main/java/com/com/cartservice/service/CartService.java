@@ -1,8 +1,12 @@
 package com.com.cartservice.service;
 
 import com.com.cartservice.dto.CartRequestDto;
+import com.com.cartservice.dto.ProductResponseDto;
+import com.com.cartservice.dto.UserResponseDto;
 import com.com.cartservice.entity.Cart;
 import com.com.cartservice.entity.CartItem;
+import com.com.cartservice.feign.ProductClient;
+import com.com.cartservice.feign.UserClient;
 import com.com.cartservice.repository.CartItemRepository;
 import com.com.cartservice.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,21 +25,46 @@ public class CartService {
     @Autowired
     private CartItemRepository cartItemRepository;
 
+    @Autowired
+    private ProductClient productClient;
+
+    @Autowired
+    private UserClient userClient;
+
+
+    public ProductResponseDto testFeign(Long productId) {
+        return productClient.getProductById(productId);
+    }
+
+
+
     @Transactional
     public String addProduct(Long userId, CartRequestDto cartRequestDto) {
+
+        UserResponseDto user = userClient.getUserByID(userId);
+        if(user ==null)
+            return "user not found";
+
+        ProductResponseDto product = productClient.getProductById(cartRequestDto.getProductId());
+
+        if(product==null)
+            return "Product not found";
+
+        if(product.getQuantity()<cartRequestDto.getQuantity())
+            return "Insufficient stock ";
 
         Optional<Cart> optionalCart = cartRepository.findByUserId(userId);
 
         Cart cart;
 
-        if (optionalCart.isPresent()) {
+        if(optionalCart.isPresent())
             cart = optionalCart.get();
-        } else {
-            cart = new Cart();
+        else{
+            cart= new Cart();
             cart.setUserId(userId);
             cart = cartRepository.save(cart);
         }
-
+        // Find Cart Item
         Optional<CartItem> optionalCartItem =
                 cartItemRepository.findByCartIdAndProductId(
                         cart.getId(),
@@ -44,10 +73,19 @@ public class CartService {
         CartItem cartItem;
 
         if (optionalCartItem.isPresent()) {
+
             cartItem = optionalCartItem.get();
-            cartItem.setQuantity(
-                    cartItem.getQuantity() + cartRequestDto.getQuantity());
+
+            int newQuantity = cartItem.getQuantity() + cartRequestDto.getQuantity();
+
+            if (newQuantity > product.getQuantity()) {
+                return "Insufficient stock";
+            }
+
+            cartItem.setQuantity(newQuantity);
+
         } else {
+
             cartItem = new CartItem();
             cartItem.setCartId(cart.getId());
             cartItem.setProductId(cartRequestDto.getProductId());
@@ -55,6 +93,9 @@ public class CartService {
         }
 
         cartItemRepository.save(cartItem);
+
+        productClient.reduceStock(cartRequestDto.getProductId()
+        ,cartRequestDto.getQuantity());
 
         return "Product added to cart";
     }

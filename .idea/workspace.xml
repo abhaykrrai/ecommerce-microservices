@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86a0be65-c861-41d1-b0a8-e019f86b2c39" name="Changes" comment="&quot;Implement Cart Service CRUD APIs&quot;" />
+    <list default="true" id="86a0be65-c861-41d1-b0a8-e019f86b2c39" name="Changes" comment="added route to access cart-service from api-gateway">
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/dto/ProductResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/dto/UserResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/feign/ProductClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/feign/UserClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/CartServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/CartServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/service/CartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/dto/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/dto/UserResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/service/UserService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,7 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="api-gateway" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -74,7 +88,7 @@
       <recent name="D:\Project\ecommerce-microservice\product-service\src\main\java\com\ecom\productservice" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CartServiceApplication">
+  <component name="RunManager" selected="Application.API-GATEWAY">
     <configuration name="API-GATEWAY" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.ecom.apigateway.ApiGatewayApplication" />
       <module name="api-gateway" />
@@ -188,10 +202,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CartServiceApplication" />
-        <item itemvalue="Application.ServiceRegistryApplication" />
-        <item itemvalue="Application.UserServiceApplication" />
         <item itemvalue="Application.ProductServiceApplication" />
+        <item itemvalue="Application.CartServiceApplication" />
+        <item itemvalue="Application.UserServiceApplication" />
+        <item itemvalue="Application.ServiceRegistryApplication" />
+        <item itemvalue="Application.CartServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -235,7 +250,23 @@
       <option name="project" value="LOCAL" />
       <updated>1783929439479</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="&quot;Implement Cart Service CRUD APIs&quot;">
+      <option name="closed" value="true" />
+      <created>1783929534271</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1783929534271</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added route to access cart-service from api-gateway">
+      <option name="closed" value="true" />
+      <created>1783930036614</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1783930036614</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -243,6 +274,7 @@
     <MESSAGE value="made changes for gateway Routing" />
     <MESSAGE value="Add User Service and complete Product Service CRUD implementation" />
     <MESSAGE value="&quot;Implement Cart Service CRUD APIs&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;Implement Cart Service CRUD APIs&quot;" />
+    <MESSAGE value="added route to access cart-service from api-gateway" />
+    <option name="LAST_COMMIT_MESSAGE" value="added route to access cart-service from api-gateway" />
   </component>
 </project>

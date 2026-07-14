@@ -1,8 +1,12 @@
 package com.com.cartservice.controller;
 
 import com.com.cartservice.dto.CartRequestDto;
+import com.com.cartservice.dto.ProductResponseDto;
+import com.com.cartservice.dto.UserResponseDto;
 import com.com.cartservice.entity.CartItem;
+import com.com.cartservice.feign.UserClient;
 import com.com.cartservice.service.CartService;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +21,9 @@ public class CartController {
 
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private UserClient userClient;
 
     @PostMapping("/{userId}")
     public ResponseEntity<String> addProductToCart(
@@ -53,5 +60,14 @@ public class CartController {
         return new ResponseEntity<>(
                 cartService.removeCartItem(cartItemId),
                 HttpStatus.OK);
+    }
+    @GetMapping("/test/{productId}")
+    public ProductResponseDto testFeign(@PathVariable Long productId) {
+        return cartService.testFeign(productId);
+    }
+
+    @GetMapping("/user-test/{id}")
+    public UserResponseDto testUser(@PathVariable Long id){
+        return userClient.getUserByID(id);
     }
 }
