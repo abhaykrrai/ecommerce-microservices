@@ -129,4 +129,18 @@ public class ProductService {
 
         return product;
     }
+
+    @Transactional
+    public void reduceStock(Long productId, Integer quantity) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        if (product.getQuantity() < quantity) {
+            throw new RuntimeException("Insufficient stock");
+        }
+
+        product.setQuantity(product.getQuantity() - quantity);
+
+        productRepository.save(product);
+    }
 }

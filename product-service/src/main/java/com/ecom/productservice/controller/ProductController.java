@@ -86,4 +86,9 @@ public class ProductController {
         return ResponseEntity.ok(
                 productService.updateProduct(id, productRequestDto));
     }
+
+    @PutMapping("/reduce-stock/{productId}")
+    public void reduceStock(@PathVariable Long productId, Integer quantity){
+        productService.reduceStock(productId,quantity);
+    }
 }
