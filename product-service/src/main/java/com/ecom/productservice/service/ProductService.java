@@ -107,7 +107,7 @@ public class ProductService {
     private ProductResponseDto entityToResponse(Product product) {
 
         ProductResponseDto responseDto = new ProductResponseDto();
-
+        responseDto.setId(product.getId());
         responseDto.setName(product.getName());
         responseDto.setDescription(product.getDescription());
         responseDto.setCategory(product.getCategory());

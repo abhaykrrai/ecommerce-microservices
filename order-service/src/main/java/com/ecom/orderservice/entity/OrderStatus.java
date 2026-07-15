@@ -1,4 +1,6 @@
 package com.ecom.orderservice.entity;
 
-public class OrderStatus {
+public enum OrderStatus {
+    PENDING,CONFIRMED,CANCELLED,DELIVERED
 }
+
