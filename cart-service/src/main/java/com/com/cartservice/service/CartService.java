@@ -5,10 +5,14 @@ import com.com.cartservice.dto.ProductResponseDto;
 import com.com.cartservice.dto.UserResponseDto;
 import com.com.cartservice.entity.Cart;
 import com.com.cartservice.entity.CartItem;
+import com.com.cartservice.exception.ProductIsLessOrderException;
+import com.com.cartservice.exception.ProductNotFoundException;
+import com.com.cartservice.exception.UserNotFoundException;
 import com.com.cartservice.feign.ProductClient;
 import com.com.cartservice.feign.UserClient;
 import com.com.cartservice.repository.CartItemRepository;
 import com.com.cartservice.repository.CartRepository;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,17 +45,21 @@ public class CartService {
     @Transactional
     public String addProduct(Long userId, CartRequestDto cartRequestDto) {
 
-        UserResponseDto user = userClient.getUserByID(userId);
-        if(user ==null)
-            return "user not found";
+        try {
+            UserResponseDto user = userClient.getUserByID(userId);
+        } catch (FeignException.NotFound e) {
+            throw new UserNotFoundException("User not found BY the Id");
+        }
+
+
 
         ProductResponseDto product = productClient.getProductById(cartRequestDto.getProductId());
 
         if(product==null)
-            return "Product not found";
+            throw new ProductNotFoundException("The product you are looking for does'nt exsist");
 
         if(product.getQuantity()<cartRequestDto.getQuantity())
-            return "Insufficient stock ";
+            throw new ProductIsLessOrderException("the product is less then expected");
 
         Optional<Cart> optionalCart = cartRepository.findByUserId(userId);
 
