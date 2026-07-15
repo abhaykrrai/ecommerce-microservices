@@ -76,4 +76,7 @@ public class Product {
     public void setCategory(String category) {
         this.category = category;
     }
+    public  Long getId(){
+        return id;
+    }
 }
