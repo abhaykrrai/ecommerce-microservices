@@ -5,26 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86a0be65-c861-41d1-b0a8-e019f86b2c39" name="Changes" comment="Implement OpenFeign integration and stock management">
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/controller/OrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/CartItemResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/OrderRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/OrderResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/ProductResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/UserResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/OrderItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/OrderStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/CartClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/ProductClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/UserClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/repository/OrderItemRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/repository/OrderRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/service/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/CartItemResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/CartItemResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/OrderRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/OrderRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/OrderResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/OrderResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/ProductResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/ProductResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/UserResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/OrderStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/OrderStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/CartClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/CartClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/ProductClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/ProductClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/UserClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/repository/OrderItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/repository/OrderItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/repository/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/service/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/dto/ProductResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/dto/ProductResponseDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/entity/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/service/ProductService.java" afterDir="false" />
