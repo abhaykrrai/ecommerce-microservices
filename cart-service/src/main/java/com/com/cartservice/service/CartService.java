@@ -102,9 +102,6 @@ public class CartService {
 
         cartItemRepository.save(cartItem);
 
-        productClient.reduceStock(cartRequestDto.getProductId()
-        ,cartRequestDto.getQuantity());
-
         return "Product added to cart";
     }
 
@@ -150,5 +147,20 @@ public class CartService {
         cartItemRepository.delete(optionalCartItem.get());
 
         return "Cart item removed";
+    }
+
+    @Transactional
+    public String clearCart(Long userId) {
+
+        Optional<Cart> cart = cartRepository.findByUserId(userId);
+
+        if(cart.isEmpty())
+            return "No cart found";
+
+        cartItemRepository.deleteByCartId(cart.get().getId());
+
+        cartRepository.deleteByUserId(userId);
+
+        return "Cart cleared successfully";
     }
 }

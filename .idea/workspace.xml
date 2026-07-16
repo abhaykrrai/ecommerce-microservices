@@ -4,30 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86a0be65-c861-41d1-b0a8-e019f86b2c39" name="Changes" comment="Implement OpenFeign integration and stock management">
+    <list default="true" id="86a0be65-c861-41d1-b0a8-e019f86b2c39" name="Changes" comment="add .">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/entity/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/entity/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/repository/CartItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/repository/CartItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/repository/CartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/repository/CartRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/service/CartService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/CartItemResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/CartItemResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/OrderRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/OrderRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/OrderResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/OrderResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/ProductResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/ProductResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/UserResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/OrderItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/OrderStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/OrderStatus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/CartClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/CartClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/ProductClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/ProductClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/UserClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/repository/OrderItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/repository/OrderItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/repository/OrderRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/dto/ProductResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/dto/ProductResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/controller/ProductController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,24 +64,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.API-GATEWAY.executor": "Run",
-    "Application.CartServiceApplication.executor": "Run",
-    "Application.OrderServiceApplication.executor": "Run",
-    "Application.ProductServiceApplication.executor": "Run",
-    "Application.ServiceRegistryApplication.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "Application.UserServiceApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "order-service",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Project/ecommerce-microservice"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.API-GATEWAY.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CartServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrderServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProductServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ServiceRegistryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;order-service&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Project/ecommerce-microservice&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Project\ecommerce-microservice\order-service\src\main\java\com\ecom\orderservice\" />
@@ -101,7 +90,7 @@
       <recent name="D:\Project\ecommerce-microservice\product-service\src\main\java\com\ecom\productservice" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.OrderServiceApplication">
+  <component name="RunManager" selected="Application.ProductServiceApplication">
     <configuration name="API-GATEWAY" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.ecom.apigateway.ApiGatewayApplication" />
       <module name="api-gateway" />
@@ -231,10 +220,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.OrderServiceApplication" />
-        <item itemvalue="Application.ServiceRegistryApplication" />
-        <item itemvalue="Application.CartServiceApplication" />
-        <item itemvalue="Application.UserServiceApplication" />
         <item itemvalue="Application.ProductServiceApplication" />
+        <item itemvalue="Application.CartServiceApplication" />
+        <item itemvalue="Application.ServiceRegistryApplication" />
+        <item itemvalue="Application.UserServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -302,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1784054254465</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add .">
+      <option name="closed" value="true" />
+      <created>1784140159260</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1784140159260</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -312,6 +309,8 @@
     <MESSAGE value="&quot;Implement Cart Service CRUD APIs&quot;" />
     <MESSAGE value="added route to access cart-service from api-gateway" />
     <MESSAGE value="Implement OpenFeign integration and stock management" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement OpenFeign integration and stock management" />
+    <MESSAGE value="added global Exception to handle specific Exception" />
+    <MESSAGE value="add ." />
+    <option name="LAST_COMMIT_MESSAGE" value="add ." />
   </component>
 </project>

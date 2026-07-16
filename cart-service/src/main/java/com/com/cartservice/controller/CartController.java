@@ -70,4 +70,9 @@ public class CartController {
     public UserResponseDto testUser(@PathVariable Long id){
         return userClient.getUserByID(id);
     }
+
+    @DeleteMapping("/clear/{userId}")
+    public ResponseEntity<String> clearCart(@PathVariable Long userId){
+        return new ResponseEntity<>(cartService.clearCart(userId),HttpStatus.OK);
+    }
 }

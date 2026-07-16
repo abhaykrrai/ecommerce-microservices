@@ -12,11 +12,6 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @GetMapping("/test")
-    public String test(){
-        return "Order is invoking";
-    }
-
     @PostMapping
     public ResponseEntity<String> placeOrder(@RequestBody OrderRequestDto request) {
         return ResponseEntity.ok(orderService.placeOrder(request));
