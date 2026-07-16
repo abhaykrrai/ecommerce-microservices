@@ -88,7 +88,7 @@ public class ProductController {
     }
 
     @PutMapping("/reduce-stock/{productId}")
-    public void reduceStock(@PathVariable Long productId, Integer quantity){
+    public void reduceStock(@PathVariable Long productId,@RequestParam Integer quantity){
         productService.reduceStock(productId,quantity);
     }
 }

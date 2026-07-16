@@ -71,6 +71,10 @@ public class OrderService {
             ProductResponseDto product =
                     productClient.getProductById(item.getProductId());
 
+            if (product.getQuantity() < item.getQuantity()) {
+                return "Insufficient stock for " + product.getName();
+            }
+
             total += product.getPrice() * item.getQuantity();
         }
 
@@ -93,10 +97,12 @@ public class OrderService {
             orderItem.setOrderStatus(OrderStatus.CONFIRMED);
 
             orderItemRepository.save(orderItem);
+
+            productClient.reduceStock(item.getProductId(), item.getQuantity());
         }
 
-        // TODO:
-        // cartClient.clearCart(request.getUserId());
+        // Delete the Cart and CartItems
+        cartClient.clearCart(user.getId());
 
         return "Order placed successfully";
     }
