@@ -9,8 +9,8 @@
         <module name="api-gateway" />
         <module name="product-service" />
         <module name="cart-service" />
-        <module name="order-service" />
         <module name="user-service" />
+        <module name="order-service" />
         <module name="service-registry" />
       </profile>
     </annotationProcessing>

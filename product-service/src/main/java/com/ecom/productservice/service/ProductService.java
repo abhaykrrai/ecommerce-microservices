@@ -143,4 +143,16 @@ public class ProductService {
 
         productRepository.save(product);
     }
+
+    public void restoreStock(Long productId, Integer quantity) {
+        Optional<Product> oproduct = productRepository.findById(productId);
+
+        if(oproduct.isEmpty())
+            throw new RuntimeException("no");
+
+        Product product = oproduct.get();
+        product.setQuantity(product.getQuantity()+quantity);
+
+        productRepository.save(product);
+    }
 }

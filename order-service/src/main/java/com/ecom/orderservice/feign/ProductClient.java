@@ -16,4 +16,8 @@ public interface ProductClient {
 
     @PutMapping("/product/reduce-stock/{productId}")
 void reduceStock(@PathVariable Long productId,@RequestParam Integer quantity);
+
+
+    @PutMapping("/product/reduce/{productId}/{quantity}")
+    void restoreStock(@PathVariable Long productId,@PathVariable Integer quantity);
 }
