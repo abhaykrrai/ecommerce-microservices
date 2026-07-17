@@ -91,4 +91,10 @@ public class ProductController {
     public void reduceStock(@PathVariable Long productId,@RequestParam Integer quantity){
         productService.reduceStock(productId,quantity);
     }
+
+    @PutMapping("/reduce/{productId}/{quantity}")
+    public void restoreStock(@PathVariable Long productId,@PathVariable Integer quantity){
+        productService.restoreStock(productId,quantity);
+    }
+
 }

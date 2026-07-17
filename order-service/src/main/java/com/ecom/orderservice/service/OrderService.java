@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -105,5 +106,28 @@ public class OrderService {
         cartClient.clearCart(user.getId());
 
         return "Order placed successfully";
+    }
+
+    public String cancelOrder(Long orderId) {
+        Optional<Order> optionalOrder = orderRepository.findById(orderId);
+
+        if(optionalOrder.isEmpty())
+            return "User has not order";
+        Order order = optionalOrder.get();
+
+        List<OrderItem> orderItem = orderItemRepository.findByOrderId(orderId);
+
+        for(OrderItem o:orderItem){
+          productClient.restoreStock(o.getProductId(),o.getQuantity());
+          o.setOrderStatus(OrderStatus.CANCELLED);
+          orderItemRepository.save(o);
+        }
+
+
+        order.setStatus(OrderStatus.CANCELLED);
+
+        orderRepository.save(order);
+
+        return "Order has been cancelled";
     }
 }
