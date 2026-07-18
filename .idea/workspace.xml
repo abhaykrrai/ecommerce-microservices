@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86a0be65-c861-41d1-b0a8-e019f86b2c39" name="Changes" comment="integrate inventory update and cart clearing">
+    <list default="true" id="86a0be65-c861-41d1-b0a8-e019f86b2c39" name="Changes" comment=" implement order cancellation and inventory restoration">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/ProductClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/ProductClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/PaymentRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/PaymentRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/PaymentResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/PaymentResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/OrderStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/OrderStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/PaymentMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/PaymentMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/PaymentStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/entity/PaymentStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/PaymentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/PaymentClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/src/main/java/com/ecom/paymentservice/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/ecom/paymentservice/controller/PaymentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/src/main/java/com/ecom/paymentservice/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/ecom/paymentservice/service/PaymentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +27,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -55,6 +61,9 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="3GHHm0oDSge1klY8PMFqr78pt4A" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -64,6 +73,7 @@
     "Application.API-GATEWAY.executor": "Run",
     "Application.CartServiceApplication.executor": "Run",
     "Application.OrderServiceApplication.executor": "Run",
+    "Application.PaymentServiceApplication.executor": "Run",
     "Application.ProductServiceApplication.executor": "Run",
     "Application.ServiceRegistryApplication.executor": "Run",
     "Application.Unnamed.executor": "Run",
@@ -72,7 +82,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "order-service",
+    "git-widget-placeholder": "payment-service",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Project/ecommerce-microservice"
   }
@@ -85,7 +95,7 @@
       <recent name="D:\Project\ecommerce-microservice\product-service\src\main\java\com\ecom\productservice" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ProductServiceApplication">
+  <component name="RunManager" selected="Application.OrderServiceApplication">
     <configuration name="API-GATEWAY" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.ecom.apigateway.ApiGatewayApplication" />
       <module name="api-gateway" />
@@ -206,19 +216,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.API-GATEWAY" />
+      <item itemvalue="Application.ServiceRegistryApplication" />
       <item itemvalue="Application.OrderServiceApplication" />
       <item itemvalue="Application.CartServiceApplication" />
       <item itemvalue="Application.UserServiceApplication" />
       <item itemvalue="Application.ProductServiceApplication" />
-      <item itemvalue="Application.ServiceRegistryApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.OrderServiceApplication" />
+        <item itemvalue="Application.ServiceRegistryApplication" />
         <item itemvalue="Application.ProductServiceApplication" />
         <item itemvalue="Application.UserServiceApplication" />
         <item itemvalue="Application.CartServiceApplication" />
-        <item itemvalue="Application.ServiceRegistryApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -294,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1784140159260</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary=" implement order cancellation and inventory restoration">
+      <option name="closed" value="true" />
+      <created>1784313736135</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1784313736135</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -306,6 +324,7 @@
     <MESSAGE value="Implement OpenFeign integration and stock management" />
     <MESSAGE value="added global Exception to handle specific Exception" />
     <MESSAGE value="add ." />
-    <option name="LAST_COMMIT_MESSAGE" value="add ." />
+    <MESSAGE value=" implement order cancellation and inventory restoration" />
+    <option name="LAST_COMMIT_MESSAGE" value=" implement order cancellation and inventory restoration" />
   </component>
 </project>

@@ -1,13 +1,9 @@
 package com.ecom.orderservice.service;
 
-import com.ecom.orderservice.dto.CartItemResponseDto;
-import com.ecom.orderservice.dto.OrderRequestDto;
-import com.ecom.orderservice.dto.ProductResponseDto;
-import com.ecom.orderservice.dto.UserResponseDto;
-import com.ecom.orderservice.entity.Order;
-import com.ecom.orderservice.entity.OrderItem;
-import com.ecom.orderservice.entity.OrderStatus;
+import com.ecom.orderservice.dto.*;
+import com.ecom.orderservice.entity.*;
 import com.ecom.orderservice.feign.CartClient;
+import com.ecom.orderservice.feign.PaymentClient;
 import com.ecom.orderservice.feign.ProductClient;
 import com.ecom.orderservice.feign.UserClient;
 import com.ecom.orderservice.repository.OrderItemRepository;
@@ -38,6 +34,9 @@ public class OrderService {
 
     @Autowired
     private CartClient cartClient;
+
+    @Autowired
+    private PaymentClient paymentClient;
 
     @Transactional
     public String placeOrder(OrderRequestDto request) {
@@ -83,6 +82,23 @@ public class OrderService {
 
         order = orderRepository.save(order);
 
+        PaymentRequestDto paymentRequest = new PaymentRequestDto();
+
+        paymentRequest.setOrderId(order.getId());
+        paymentRequest.setUserId(order.getUserId());
+        paymentRequest.setAmount(order.getTotalAmount());
+        paymentRequest.setPaymentMethod(PaymentMethod.UPI); // Temporary
+
+        PaymentResponseDto paymentResponse =
+                paymentClient.makePayment(paymentRequest);
+
+        if (paymentResponse.getPaymentStatus() == PaymentStatus.SUCCESS) {
+            order.setStatus(OrderStatus.PAID);
+            orderRepository.save(order);
+        } else {
+            return "Payment Failed";
+        }
+
         // Save Order Items
         for (CartItemResponseDto item : cartItems) {
 
@@ -95,7 +111,7 @@ public class OrderService {
             orderItem.setProductId(product.getId());
             orderItem.setQuantity(item.getQuantity());
             orderItem.setPrice(product.getPrice());
-            orderItem.setOrderStatus(OrderStatus.CONFIRMED);
+            orderItem.setOrderStatus(OrderStatus.PAID);
 
             orderItemRepository.save(orderItem);
 
