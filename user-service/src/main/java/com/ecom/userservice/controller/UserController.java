@@ -23,7 +23,7 @@ public class UserController {
         return "Hello User";
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<String> registerUser(@Valid @RequestBody UserRequestDto userRequestDto) {
 
         String response = userService.saveUser(userRequestDto);

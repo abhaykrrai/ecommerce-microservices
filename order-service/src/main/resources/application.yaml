@@ -29,3 +29,6 @@ management:
 
 server:
   port: 8084
+
+jwt:
+  secret: QWxhZGRpbjpPcGVuU2VzYW1lMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=
