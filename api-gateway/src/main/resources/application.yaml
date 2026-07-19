@@ -9,14 +9,22 @@ spring:
           uri: lb://PRODUCT-SERVICE
           predicates:
             - Path=/product/**
+
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user/**
+
+        - id: auth-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/auth/**
+
         - id: cart-service
           uri: lb://CART-SERVICE
           predicates:
             - Path=/cart/**
+
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
@@ -46,3 +54,6 @@ management:
     web:
       exposure:
         include: "*"
+
+jwt:
+  secret: QWxhZGRpbjpPcGVuU2VzYW1lMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=

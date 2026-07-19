@@ -1,11 +1,15 @@
 package com.ecom.userservice.service;
 
+import com.ecom.userservice.dto.AuthResponse;
+import com.ecom.userservice.dto.LoginRequest;
 import com.ecom.userservice.dto.UserRequestDto;
 import com.ecom.userservice.dto.UserResponseDto;
 import com.ecom.userservice.entity.Role;
 import com.ecom.userservice.entity.User;
 import com.ecom.userservice.repository.UserRepository;
+import com.ecom.userservice.security.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +22,12 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtService jwtService;
 
     @Transactional
     public String saveUser(UserRequestDto userRequestDto) {
@@ -32,7 +42,7 @@ public class UserService {
         user.setEmail(userRequestDto.getEmail());
 
         // Later we'll encrypt this using BCrypt
-        user.setPassword(userRequestDto.getPassword());
+        user.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
 
         // Every newly registered user will be a USER
         user.setRole(Role.USER);
@@ -102,5 +112,24 @@ public class UserService {
         dto.setRole(user.getRole());
 
         return dto;
+    }
+
+    public AuthResponse login(LoginRequest request) {
+        Optional<User> optionalUser = userRepository.findByEmail(request.getEmail());
+
+        if(optionalUser.isEmpty())
+            throw new RuntimeException("Email not found");
+
+        User user = optionalUser.get();
+
+
+        if(!passwordEncoder.matches(request.getPassword(), user.getPassword())){
+            throw new RuntimeException("Incorrect Password");
+        }
+
+        String token  = jwtService.generateToken(user);
+
+        return new AuthResponse(token);
+
     }
 }
