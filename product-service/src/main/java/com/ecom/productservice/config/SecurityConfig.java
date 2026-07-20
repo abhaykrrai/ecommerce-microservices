@@ -3,6 +3,7 @@ package com.ecom.productservice.config;
 import com.ecom.productservice.security.JWTAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -27,7 +28,26 @@ public class SecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().authenticated()
+
+                                // Anyone with a valid JWT can view products
+                                .requestMatchers(HttpMethod.GET, "/product/**")
+                                .hasAnyRole("USER", "ADMIN")
+
+                                // Only ADMIN can add products
+                                .requestMatchers(HttpMethod.POST, "/product/**")
+                                .hasRole("ADMIN")
+
+                                // Only ADMIN can update products
+                                .requestMatchers(HttpMethod.PUT, "/product/**")
+                                .hasRole("ADMIN")
+
+                                // Only ADMIN can delete products
+                                .requestMatchers(HttpMethod.DELETE, "/product/**")
+                                .hasRole("ADMIN")
+
+                                // Everything else requires authentication
+                                .anyRequest()
+                                .authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class)
