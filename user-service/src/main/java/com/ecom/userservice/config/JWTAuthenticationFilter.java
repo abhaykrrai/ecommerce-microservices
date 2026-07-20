@@ -33,7 +33,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         String path = request.getServletPath();
 
         // Public endpoints
-        if (path.startsWith("/auth") || path.equals("/user/register")) {
+        if (path.startsWith("/auth") || path.equals("/user/register") || path.equals("/admin/register")|| path.equals("/admin/login")) {
             filterChain.doFilter(request, response);
             return;
         }

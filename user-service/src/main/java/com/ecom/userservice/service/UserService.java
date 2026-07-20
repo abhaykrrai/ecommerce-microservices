@@ -52,6 +52,25 @@ public class UserService {
         return "User Registered Successfully";
     }
 
+    @Transactional
+    public String saveAdmin(UserRequestDto userRequestDto){
+
+        if (userRepository.existsByEmail(userRequestDto.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
+
+        User user = new User();
+        user.setName(userRequestDto.getName());
+        user.setEmail(userRequestDto.getEmail());
+        user.setRole(Role.ADMIN);
+        user.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
+
+        userRepository.save(user);
+
+        return "Admin have been added";
+
+    }
+
     public List<UserResponseDto> getAllUsers() {
 
         return userRepository.findAll()
@@ -130,6 +149,24 @@ public class UserService {
         String token  = jwtService.generateToken(user);
 
         return new AuthResponse(token);
+
+    }
+
+    public AuthResponse adminLogin(LoginRequest loginRequest) {
+        Optional<User> optionalUser = userRepository.findByEmail(loginRequest.getEmail());
+
+        if(optionalUser.isEmpty())
+            throw new RuntimeException("Admin does not exists");
+
+        User user = optionalUser.get();
+
+        if(!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword()))
+            throw new RuntimeException("Incorrect Password");
+
+        String token = jwtService.generateToken(user);
+
+        return new AuthResponse(token);
+
 
     }
 }
