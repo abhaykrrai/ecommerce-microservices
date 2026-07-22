@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,16 +27,24 @@ public class ProductService {
     private ProductRepository productRepository;
 
     @Transactional
-    public String addProduct(ProductRequestDto productRequestDto, Long adminId) {
+    public String addProduct(ProductRequestDto productRequestDto) {
+
+        Long adminId = (Long) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
 
         Optional<Product> existingProduct =
-                productRepository.findByNameAndAdminId(productRequestDto.getName(), adminId);
+                productRepository.findByNameAndAdminId(
+                        productRequestDto.getName(),
+                        adminId);
 
         if (existingProduct.isPresent()) {
 
             Product product = existingProduct.get();
 
-            long totalQuantity = product.getQuantity() + productRequestDto.getQuantity();
+            long totalQuantity =
+                    product.getQuantity() + productRequestDto.getQuantity();
 
             log.info("Updating product quantity to {}", totalQuantity);
 
@@ -46,7 +56,6 @@ public class ProductService {
         }
 
         Product product = dtoToEntity(productRequestDto);
-
         product.setAdminId(adminId);
 
         productRepository.save(product);
@@ -57,9 +66,20 @@ public class ProductService {
     @Transactional
     public String deleteProduct(Long id) {
 
+        Long adminId = (Long) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
         Product product = productRepository.findById(id)
                 .orElseThrow(() ->
-                        new ProductNotFoundException("Product not found with id : " + id));
+                        new ProductNotFoundException(
+                                "Product not found with id : " + id));
+
+        if (!product.getAdminId().equals(adminId)) {
+            throw new AccessDeniedException(
+                    "You can delete only your own products");
+        }
 
         productRepository.delete(product);
 
@@ -67,12 +87,10 @@ public class ProductService {
     }
 
     public Page<Product> getAllProducts(Pageable pageable) {
-
         return productRepository.findAll(pageable);
     }
 
     public List<Product> searchProduct(String keyword) {
-
         return productRepository.findProductByCategory(keyword);
     }
 
@@ -80,7 +98,8 @@ public class ProductService {
 
         Product product = productRepository.findById(id)
                 .orElseThrow(() ->
-                        new ProductNotFoundException("Product not found with id : " + id));
+                        new ProductNotFoundException(
+                                "Product not found with id : " + id));
 
         return entityToResponse(product);
     }
@@ -89,9 +108,20 @@ public class ProductService {
     public ProductResponseDto updateProduct(Long id,
                                             ProductRequestDto productRequestDto) {
 
+        Long adminId = (Long) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
         Product product = productRepository.findById(id)
                 .orElseThrow(() ->
-                        new ProductNotFoundException("Product not found with id : " + id));
+                        new ProductNotFoundException(
+                                "Product not found with id : " + id));
+
+        if (!product.getAdminId().equals(adminId)) {
+            throw new AccessDeniedException(
+                    "You can update only your own products");
+        }
 
         product.setName(productRequestDto.getName());
         product.setDescription(productRequestDto.getDescription());
@@ -107,6 +137,7 @@ public class ProductService {
     private ProductResponseDto entityToResponse(Product product) {
 
         ProductResponseDto responseDto = new ProductResponseDto();
+
         responseDto.setId(product.getId());
         responseDto.setName(product.getName());
         responseDto.setDescription(product.getDescription());
@@ -132,8 +163,10 @@ public class ProductService {
 
     @Transactional
     public void reduceStock(Long productId, Integer quantity) {
+
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() ->
+                        new RuntimeException("Product not found"));
 
         if (product.getQuantity() < quantity) {
             throw new RuntimeException("Insufficient stock");
@@ -144,14 +177,14 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    @Transactional
     public void restoreStock(Long productId, Integer quantity) {
-        Optional<Product> oproduct = productRepository.findById(productId);
 
-        if(oproduct.isEmpty())
-            throw new RuntimeException("no");
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() ->
+                        new RuntimeException("Product not found"));
 
-        Product product = oproduct.get();
-        product.setQuantity(product.getQuantity()+quantity);
+        product.setQuantity(product.getQuantity() + quantity);
 
         productRepository.save(product);
     }
