@@ -4,45 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86a0be65-c861-41d1-b0a8-e019f86b2c39" name="Changes" comment=" implement order cancellation and inventory restoration">
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/ecom/apigateway/security/JWTAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/ecom/apigateway/security/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/ecom/apigateway/security/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/feign/FeignConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/security/JWTAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/com/cartservice/security/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/feign/FeignConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/security/JWTAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/security/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/ecom/paymentservice/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/ecom/paymentservice/security/JWTAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/ecom/paymentservice/security/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/security/JWTAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/security/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/config/JWTAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/controller/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/dto/AuthResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/security/JwtService.java" afterDir="false" />
+    <list default="true" id="86a0be65-c861-41d1-b0a8-e019f86b2c39" name="Changes" comment="implement role-based authorization for product management">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/security/JWTAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/security/JWTAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/security/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/ecom/productservice/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/ecom/userservice/security/JwtService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,25 +61,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.API-GATEWAY.executor": "Run",
-    "Application.CartServiceApplication.executor": "Run",
-    "Application.OrderServiceApplication.executor": "Run",
-    "Application.PaymentServiceApplication.executor": "Run",
-    "Application.ProductServiceApplication.executor": "Run",
-    "Application.ServiceRegistryApplication.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "Application.UserServiceApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "user-service",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Project/ecommerce-microservice/payment-service/src/main/java/com/ecom/paymentservice/security"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.API-GATEWAY.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CartServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrderServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PaymentServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProductServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ServiceRegistryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;user-service&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Project/ecommerce-microservice/payment-service/src/main/java/com/ecom/paymentservice/security&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Project\ecommerce-microservice\payment-service\src\main\java\com\ecom\paymentservice\security" />
@@ -129,7 +97,7 @@
       <recent name="com.ecom.apigateway.security" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PaymentServiceApplication">
+  <component name="RunManager" selected="Application.ServiceRegistryApplication">
     <configuration name="API-GATEWAY" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.ecom.apigateway.ApiGatewayApplication" />
       <module name="api-gateway" />
@@ -144,20 +112,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.com.cartservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OrderServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ecom.orderservice.OrderServiceApplication" />
-      <module name="order-service" />
-      <option name="VM_PARAMETERS" value="-Duser.timezone=Asia/Kolkata" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ecom.orderservice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -186,6 +140,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.ecom.productservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceRegistryApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ecom.serviceregistry.ServiceRegistryApplication" />
+      <module name="service-registry" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ecom.serviceregistry.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -251,19 +218,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.API-GATEWAY" />
+      <item itemvalue="Application.ServiceRegistryApplication" />
       <item itemvalue="Application.PaymentServiceApplication" />
-      <item itemvalue="Application.OrderServiceApplication" />
       <item itemvalue="Application.CartServiceApplication" />
       <item itemvalue="Application.UserServiceApplication" />
       <item itemvalue="Application.ProductServiceApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PaymentServiceApplication" />
-        <item itemvalue="Application.CartServiceApplication" />
-        <item itemvalue="Application.OrderServiceApplication" />
         <item itemvalue="Application.ProductServiceApplication" />
         <item itemvalue="Application.UserServiceApplication" />
+        <item itemvalue="Application.ServiceRegistryApplication" />
+        <item itemvalue="Application.PaymentServiceApplication" />
+        <item itemvalue="Application.CartServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -347,7 +314,23 @@
       <option name="project" value="LOCAL" />
       <updated>1784313736135</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="JWT authentication : TODO add role based authorization">
+      <option name="closed" value="true" />
+      <created>1784449183812</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1784449183812</updated>
+    </task>
+    <task id="LOCAL-00011" summary="implement role-based authorization for product management">
+      <option name="closed" value="true" />
+      <created>1784571222028</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1784571222028</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -360,6 +343,7 @@
     <MESSAGE value="added global Exception to handle specific Exception" />
     <MESSAGE value="add ." />
     <MESSAGE value=" implement order cancellation and inventory restoration" />
-    <option name="LAST_COMMIT_MESSAGE" value=" implement order cancellation and inventory restoration" />
+    <MESSAGE value="implement role-based authorization for product management" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement role-based authorization for product management" />
   </component>
 </project>

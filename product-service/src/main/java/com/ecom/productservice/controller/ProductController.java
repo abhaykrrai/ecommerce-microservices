@@ -7,10 +7,7 @@ import com.ecom.productservice.exception.QuantityLessException;
 import com.ecom.productservice.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,10 +45,7 @@ public class ProductController {
             throw new QuantityLessException("Quantity must not be less than 1");
         }
 
-        // Temporary adminId until Auth/Admin service is implemented
-        Long adminId = 1L;
-
-        String response = productService.addProduct(productRequestDto, adminId);
+        String response = productService.addProduct(productRequestDto);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -88,13 +82,18 @@ public class ProductController {
     }
 
     @PutMapping("/reduce-stock/{productId}")
-    public void reduceStock(@PathVariable Long productId,@RequestParam Integer quantity){
-        productService.reduceStock(productId,quantity);
+    public void reduceStock(
+            @PathVariable Long productId,
+            @RequestParam Integer quantity) {
+
+        productService.reduceStock(productId, quantity);
     }
 
     @PutMapping("/reduce/{productId}/{quantity}")
-    public void restoreStock(@PathVariable Long productId,@PathVariable Integer quantity){
-        productService.restoreStock(productId,quantity);
-    }
+    public void restoreStock(
+            @PathVariable Long productId,
+            @PathVariable Integer quantity) {
 
+        productService.restoreStock(productId, quantity);
+    }
 }
