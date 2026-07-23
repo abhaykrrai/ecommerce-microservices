@@ -29,25 +29,32 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
 
-                                // Anyone with a valid JWT can view products
-                                .requestMatchers(HttpMethod.GET, "/product/**")
-                                .hasAnyRole("USER", "ADMIN")
+                        // Anyone with a valid JWT can view products
+                        .requestMatchers(HttpMethod.GET, "/product/**")
+                        .hasAnyRole("USER", "ADMIN")
 
-                                // Only ADMIN can add products
-                                .requestMatchers(HttpMethod.POST, "/product/**")
-                                .hasRole("ADMIN")
+                        // Internal/order-flow endpoint: called by order-service
+                        // whenever a user places an order. Must be declared BEFORE
+                        // the general PUT rule below, since Spring Security uses
+                        // the first matching rule.
+                        .requestMatchers(HttpMethod.PUT, "/product/reduce-stock/**")
+                        .hasAnyRole("USER", "ADMIN")
 
-                                // Only ADMIN can update products
-                                .requestMatchers(HttpMethod.PUT, "/product/**")
-                                .hasRole("ADMIN")
+                        // Only ADMIN can update products
+                        .requestMatchers(HttpMethod.PUT, "/product/**")
+                        .hasRole("ADMIN")
 
-                                // Only ADMIN can delete products
-                                .requestMatchers(HttpMethod.DELETE, "/product/**")
-                                .hasRole("ADMIN")
+                        // Only ADMIN can add products
+                        .requestMatchers(HttpMethod.POST, "/product/**")
+                        .hasRole("ADMIN")
 
-                                // Everything else requires authentication
-                                .anyRequest()
-                                .authenticated()
+                        // Only ADMIN can delete products
+                        .requestMatchers(HttpMethod.DELETE, "/product/**")
+                        .hasRole("ADMIN")
+
+                        // Everything else requires authentication
+                        .anyRequest()
+                        .authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class)

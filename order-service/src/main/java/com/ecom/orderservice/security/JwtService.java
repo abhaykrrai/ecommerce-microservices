@@ -34,6 +34,20 @@ public class JwtService {
         }
     }
 
+    public Long extractUserId(String token) {
+        Claims claims = extractAllClaims(token);
+
+        Object userId = claims.get("userId");
+
+        if (userId instanceof Integer) {
+            return ((Integer) userId).longValue();
+        } else if (userId instanceof Long) {
+            return (Long) userId;
+        }
+
+        throw new RuntimeException("Invalid userId in JWT");
+    }
+
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
                 .verifyWith(getSignKey())

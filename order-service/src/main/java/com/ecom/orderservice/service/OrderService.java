@@ -10,6 +10,7 @@ import com.ecom.orderservice.repository.OrderItemRepository;
 import com.ecom.orderservice.repository.OrderRepository;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,19 +40,17 @@ public class OrderService {
     private PaymentClient paymentClient;
 
     @Transactional
-    public String placeOrder(OrderRequestDto request) {
+    public String placeOrder() {
 
         // Check User
-        UserResponseDto user;
-        try {
-            user = userClient.getUserById(request.getUserId());
-        } catch (FeignException.NotFound e) {
-            return "User not found";
-        }
+        Long userId = (Long) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
 
         // Get Cart
         List<CartItemResponseDto> cartItems =
-                cartClient.getCart(request.getUserId());
+                cartClient.getCart(userId);
 
         if (cartItems == null || cartItems.isEmpty()) {
             return "Cart is empty";
@@ -59,7 +58,7 @@ public class OrderService {
 
         // Create Order
         Order order = new Order();
-        order.setUserId(user.getId());
+        order.setUserId(userId);
         order.setOrderedAt(LocalDateTime.now());
         order.setStatus(OrderStatus.CONFIRMED);
 
@@ -119,17 +118,25 @@ public class OrderService {
         }
 
         // Delete the Cart and CartItems
-        cartClient.clearCart(user.getId());
+        cartClient.clearCart(userId);
 
         return "Order placed successfully";
     }
 
     public String cancelOrder(Long orderId) {
         Optional<Order> optionalOrder = orderRepository.findById(orderId);
+        Long userId =
+                (Long) SecurityContextHolder
+                        .getContext()
+                        .getAuthentication()
+                        .getPrincipal();
 
         if(optionalOrder.isEmpty())
             return "User has not order";
         Order order = optionalOrder.get();
+
+        if(!optionalOrder.get().getUserId().equals(userId))
+            throw new RuntimeException("You can't cancel the order");
 
         List<OrderItem> orderItem = orderItemRepository.findByOrderId(orderId);
 
@@ -145,5 +152,13 @@ public class OrderService {
         orderRepository.save(order);
 
         return "Order has been cancelled";
+    }
+
+    public List<Order> getMyOrders() {
+        Long userId = (Long) SecurityContextHolder
+                .getContext()
+                        .getAuthentication()
+                                .getPrincipal();
+        return orderRepository.findByUserId(userId);
     }
 }
