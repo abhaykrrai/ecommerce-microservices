@@ -6,7 +6,6 @@ import com.com.cartservice.dto.UserResponseDto;
 import com.com.cartservice.entity.CartItem;
 import com.com.cartservice.feign.UserClient;
 import com.com.cartservice.service.CartService;
-
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,21 +24,20 @@ public class CartController {
     @Autowired
     private UserClient userClient;
 
-    @PostMapping("/{userId}")
+    @PostMapping
     public ResponseEntity<String> addProductToCart(
-            @PathVariable Long userId,
             @Valid @RequestBody CartRequestDto cartRequestDto) {
 
         return new ResponseEntity<>(
-                cartService.addProduct(userId, cartRequestDto),
+                cartService.addProduct(cartRequestDto),
                 HttpStatus.CREATED);
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<CartItem>> getCart(@PathVariable Long userId) {
+    @GetMapping
+    public ResponseEntity<List<CartItem>> getCart() {
 
         return new ResponseEntity<>(
-                cartService.getCart(userId),
+                cartService.getCart(),
                 HttpStatus.OK);
     }
 
@@ -61,18 +59,22 @@ public class CartController {
                 cartService.removeCartItem(cartItemId),
                 HttpStatus.OK);
     }
+
+    @DeleteMapping("/clear")
+    public ResponseEntity<String> clearCart() {
+
+        return new ResponseEntity<>(
+                cartService.clearCart(),
+                HttpStatus.OK);
+    }
+
     @GetMapping("/test/{productId}")
     public ProductResponseDto testFeign(@PathVariable Long productId) {
         return cartService.testFeign(productId);
     }
 
     @GetMapping("/user-test/{id}")
-    public UserResponseDto testUser(@PathVariable Long id){
+    public UserResponseDto testUser(@PathVariable Long id) {
         return userClient.getUserByID(id);
-    }
-
-    @DeleteMapping("/clear/{userId}")
-    public ResponseEntity<String> clearCart(@PathVariable Long userId){
-        return new ResponseEntity<>(cartService.clearCart(userId),HttpStatus.OK);
     }
 }
