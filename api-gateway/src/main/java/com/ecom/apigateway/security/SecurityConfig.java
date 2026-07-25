@@ -19,6 +19,9 @@ public class SecurityConfig {
                 .authorizeExchange(exchange -> exchange
                         .pathMatchers("/auth/**").permitAll()
                         .pathMatchers("/eureka/**").permitAll()
+                        .pathMatchers("/user/register").permitAll()
+                        .pathMatchers("/admin/register").permitAll()
+                        .pathMatchers("/admin/login").permitAll()
                         .anyExchange().authenticated()
                 )
                 .addFilterAt(jwtAuthenticationFilter,

@@ -11,10 +11,10 @@ import java.util.List;
 @FeignClient(name = "CART-SERVICE")
 public interface CartClient {
 
-    @GetMapping("/cart/{userId}")
-    List<CartItemResponseDto> getCart(@PathVariable("userId") Long userId);
+    @GetMapping("/cart")
+    List<CartItemResponseDto> getCart();
 
-    @DeleteMapping("/cart/clear/{userId}")
-    void clearCart(@PathVariable Long userId);
+    @DeleteMapping("/cart/clear")
+    void clearCart();
 
 }

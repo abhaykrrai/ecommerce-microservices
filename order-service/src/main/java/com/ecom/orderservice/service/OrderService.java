@@ -50,7 +50,7 @@ public class OrderService {
 
         // Get Cart
         List<CartItemResponseDto> cartItems =
-                cartClient.getCart(userId);
+                cartClient.getCart();
 
         if (cartItems == null || cartItems.isEmpty()) {
             return "Cart is empty";
@@ -118,7 +118,7 @@ public class OrderService {
         }
 
         // Delete the Cart and CartItems
-        cartClient.clearCart(userId);
+        cartClient.clearCart();
 
         return "Order placed successfully";
     }
@@ -131,21 +131,20 @@ public class OrderService {
                         .getAuthentication()
                         .getPrincipal();
 
-        if(optionalOrder.isEmpty())
+        if (optionalOrder.isEmpty())
             return "User has not order";
         Order order = optionalOrder.get();
 
-        if(!optionalOrder.get().getUserId().equals(userId))
+        if (!optionalOrder.get().getUserId().equals(userId))
             throw new RuntimeException("You can't cancel the order");
 
         List<OrderItem> orderItem = orderItemRepository.findByOrderId(orderId);
 
-        for(OrderItem o:orderItem){
-          productClient.restoreStock(o.getProductId(),o.getQuantity());
-          o.setOrderStatus(OrderStatus.CANCELLED);
-          orderItemRepository.save(o);
+        for (OrderItem o : orderItem) {
+            productClient.restoreStock(o.getProductId(), o.getQuantity());
+            o.setOrderStatus(OrderStatus.CANCELLED);
+            orderItemRepository.save(o);
         }
-
 
         order.setStatus(OrderStatus.CANCELLED);
 
@@ -157,8 +156,8 @@ public class OrderService {
     public List<Order> getMyOrders() {
         Long userId = (Long) SecurityContextHolder
                 .getContext()
-                        .getAuthentication()
-                                .getPrincipal();
+                .getAuthentication()
+                .getPrincipal();
         return orderRepository.findByUserId(userId);
     }
 }

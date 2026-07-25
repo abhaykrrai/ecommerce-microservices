@@ -37,7 +37,7 @@ public class SecurityConfig {
                         // whenever a user places an order. Must be declared BEFORE
                         // the general PUT rule below, since Spring Security uses
                         // the first matching rule.
-                        .requestMatchers(HttpMethod.PUT, "/product/reduce-stock/**")
+                        .requestMatchers(HttpMethod.PUT, "/product/reduce-stock/**", "/product/reduce/**")
                         .hasAnyRole("USER", "ADMIN")
 
                         // Only ADMIN can update products
