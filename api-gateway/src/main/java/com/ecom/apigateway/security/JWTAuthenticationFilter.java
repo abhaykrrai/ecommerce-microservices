@@ -29,7 +29,11 @@ public class JWTAuthenticationFilter implements WebFilter {
         String path = exchange.getRequest().getPath().value();
 
         // Public Endpoints
-        if (path.startsWith("/auth") || path.startsWith("/eureka")) {
+        if (path.startsWith("/auth")
+                || path.startsWith("/eureka")
+                || path.equals("/user/register")
+                || path.equals("/admin/register")
+                || path.equals("/admin/login")) {
             return chain.filter(exchange);
         }
 

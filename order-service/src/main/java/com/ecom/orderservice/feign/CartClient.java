@@ -12,9 +12,9 @@ import java.util.List;
 public interface CartClient {
 
     @GetMapping("/cart")
-    List<CartItemResponseDto> getCart(@PathVariable("userId") Long userId);
+    List<CartItemResponseDto> getCart();
 
     @DeleteMapping("/cart/clear")
-    void clearCart(@PathVariable Long userId);
+    void clearCart();
 
 }
