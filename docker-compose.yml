@@ -73,6 +73,7 @@ services:
     depends_on:
       - postgres
       - service-registry
+      - rabbitmq
 
   payment-service:
     build:
@@ -83,6 +84,29 @@ services:
     depends_on:
       - postgres
       - service-registry
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    restart: unless-stopped
+
+  notification-service:
+    build:
+      context: ./notification-service
+    container_name: notification-service
+    ports:
+      - "8090:8090"
+    depends_on:
+      - service-registry
+      - rabbitmq
 
 volumes:
   postgres-data:
