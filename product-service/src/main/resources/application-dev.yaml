@@ -1,12 +1,12 @@
 server:
-  port: 8084
+  port: 8081
 
 spring:
   application:
-    name: ORDER-SERVICE
+    name: product-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/order_db
+    url: jdbc:postgresql://localhost:5432/product_db
     username: postgres
     password: abhay
     driver-class-name: org.postgresql.Driver

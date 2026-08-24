@@ -1,9 +1,9 @@
 server:
-  port: 8084
+  port: 8090
 
 spring:
   application:
-    name: ORDER-SERVICE
+    name: notification-service
 
   datasource:
     url: jdbc:postgresql://localhost:5432/order_db

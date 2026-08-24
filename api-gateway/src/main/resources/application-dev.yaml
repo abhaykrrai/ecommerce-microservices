@@ -1,9 +1,9 @@
 server:
-  port: 8084
+  port: 8765
 
 spring:
   application:
-    name: ORDER-SERVICE
+    name: api-gateway
 
   datasource:
     url: jdbc:postgresql://localhost:5432/order_db
