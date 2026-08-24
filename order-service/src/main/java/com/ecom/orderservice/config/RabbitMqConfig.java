@@ -20,10 +20,12 @@ public class RabbitMqConfig {
         return new DirectExchange(EXCHANGE);
     }
 
+    @Bean
     public Queue queue(){
         return new Queue(QUEUE);
     }
 
+    @Bean
     public Binding binding(){
         return BindingBuilder
                 .bind(queue())

@@ -1,5 +1,6 @@
 package com.ecom.orderservice.service;
 
+import com.ecom.orderservice.config.RabbitMqConfig;
 import com.ecom.orderservice.dto.*;
 import com.ecom.orderservice.entity.*;
 import com.ecom.orderservice.feign.CartClient;
@@ -9,6 +10,7 @@ import com.ecom.orderservice.feign.UserClient;
 import com.ecom.orderservice.repository.OrderItemRepository;
 import com.ecom.orderservice.repository.OrderRepository;
 import feign.FeignException;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -38,6 +40,13 @@ public class OrderService {
 
     @Autowired
     private PaymentClient paymentClient;
+
+    @Autowired
+    private final RabbitTemplate rabbitTemplate;
+
+    public OrderService(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
 
     @Transactional
     public String placeOrder() {
@@ -119,6 +128,14 @@ public class OrderService {
 
         // Delete the Cart and CartItems
         cartClient.clearCart();
+
+        System.out.println("######## NEW ORDER SERVICE CODE IS RUNNING ########");
+        System.out.println("######## ABOUT TO SEND RABBIT MESSAGE ########");
+        OrderNotificationEvent notificationEvent = new OrderNotificationEvent(order.getId(),order.getUserId(),order.getTotalAmount(),order.getStatus().name());
+
+        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE,RabbitMqConfig.ROUTING_KEY,"Test order message");
+
+
 
         return "Order placed successfully";
     }

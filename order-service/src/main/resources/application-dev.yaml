@@ -1,14 +1,15 @@
 spring:
   application:
     name: order-service
+
   rabbitmq:
-    host: rabbitmq
+    host: localhost
     port: 5672
     username: guest
     password: guest
 
   datasource:
-    url: jdbc:postgresql://postgres:5432/order_db
+    url: jdbc:postgresql://localhost:5432/order_db
     username: postgres
     password: abhay
     driver-class-name: org.postgresql.Driver
@@ -20,7 +21,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://service-registry:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
 
   instance:
     prefer-ip-address: true
@@ -30,7 +31,6 @@ management:
     web:
       exposure:
         include: "*"
-
 
 server:
   port: 8084

@@ -19,6 +19,8 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<String> placeOrder() {
+
+        System.out.print("############################About to place order");
         return ResponseEntity.ok(orderService.placeOrder());
     }
 
