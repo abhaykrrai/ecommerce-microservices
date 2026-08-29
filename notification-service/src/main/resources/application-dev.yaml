@@ -18,7 +18,7 @@ spring:
     open-in-view: false
 
   rabbitmq:
-    host: rabbitmq
+    host: localhost
     port: 5672
     username: guest
     password: guest
@@ -38,7 +38,7 @@ eureka:
 
   instance:
     prefer-ip-address: true
-    hostname: order-service
+    hostname: notification-service
 
 logging:
   level:

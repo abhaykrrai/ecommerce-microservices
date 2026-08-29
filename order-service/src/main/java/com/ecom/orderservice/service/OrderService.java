@@ -133,7 +133,7 @@ public class OrderService {
         System.out.println("######## ABOUT TO SEND RABBIT MESSAGE ########");
         OrderNotificationEvent notificationEvent = new OrderNotificationEvent(order.getId(),order.getUserId(),order.getTotalAmount(),order.getStatus().name());
 
-        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE,RabbitMqConfig.ROUTING_KEY,"Test order message");
+        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE,RabbitMqConfig.ROUTING_KEY,notificationEvent);
 
 
 

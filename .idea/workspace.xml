@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86a0be65-c861-41d1-b0a8-e019f86b2c39" name="Changes" comment="added RabbitMQ and notification service">
+      <change afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/ecom/notificationservice/dto/OrderNotificationEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/ecom/notificationservice/listener/OrderNotificationListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application-dev.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/resources/application-dev.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/ecom/notificationservice/config/RabbitConfigMQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/ecom/notificationservice/config/RabbitConfigMQ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/ecom/notificationservice/config/RabbitDebug.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/ecom/notificationservice/config/RabbitTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/notification-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/resources/application-dev.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/config/RabbitMqConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/config/RabbitMqConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/OrderNotificationEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/dto/OrderNotificationEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/service/OrderEventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/service/OrderEventPublisher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecom/orderservice/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application-dev.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/resources/application-dev.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-registry/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/src/main/resources/application-dev.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application-dev.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +79,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "notification-service",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Project/ecommerce-microservice/user-service/src/main/resources"
   }
@@ -104,6 +99,7 @@
       <recent name="D:\Project\ecommerce-microservice\product-service\src\main\java\com\ecom\productservice" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ecom.notificationservice.dto" />
       <recent name="com.ecom.paymentservice.config" />
       <recent name="com.com.cartservice.feign" />
       <recent name="com.ecom.userservice.config" />
