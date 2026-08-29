@@ -3,9 +3,18 @@ package com.ecom.notificationservice.dto;
 public class OrderNotificationEvent {
 
     private Long orderId;
+    private String email;
     private Long userId;
     private double amount;
     private String status;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public OrderNotificationEvent() {
     }
@@ -14,12 +23,13 @@ public class OrderNotificationEvent {
             Long orderId,
             Long userId,
             double amount,
-            String status) {
+            String status,String email) {
 
         this.orderId = orderId;
         this.userId = userId;
         this.amount = amount;
         this.status = status;
+        this.email = email;
     }
 
     public Long getOrderId() {

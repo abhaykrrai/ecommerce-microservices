@@ -6,21 +6,32 @@ public class OrderNotificationEvent {
     private Long userId;
     private double amount;
     private String status;
+    private String email;
 
     public OrderNotificationEvent() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public OrderNotificationEvent(
             Long orderId,
             Long userId,
             double amount,
-            String status) {
+            String status, String email) {
 
         this.orderId = orderId;
         this.userId = userId;
         this.amount = amount;
         this.status = status;
+        this.email = email;
     }
+
 
     public Long getOrderId() {
         return orderId;
