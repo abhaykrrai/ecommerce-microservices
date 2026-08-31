@@ -26,13 +26,10 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@Valid @RequestBody UserRequestDto userRequestDto) {
 
-        String response = userService.saveUser(userRequestDto);
-
-        if (response.equals("User already exists")) {
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        }
-
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(
+                userService.saveUser(userRequestDto),
+                HttpStatus.CREATED
+        );
     }
 
     @GetMapping

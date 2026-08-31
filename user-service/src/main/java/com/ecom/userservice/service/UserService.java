@@ -6,6 +6,9 @@ import com.ecom.userservice.dto.UserRequestDto;
 import com.ecom.userservice.dto.UserResponseDto;
 import com.ecom.userservice.entity.Role;
 import com.ecom.userservice.entity.User;
+import com.ecom.userservice.exception.InvalidCredentialsException;
+import com.ecom.userservice.exception.UserAlreadyExistsException;
+import com.ecom.userservice.exception.UserNotFoundException;
 import com.ecom.userservice.repository.UserRepository;
 import com.ecom.userservice.security.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +36,7 @@ public class UserService {
     public String saveUser(UserRequestDto userRequestDto) {
 
         if (userRepository.existsByEmail(userRequestDto.getEmail())) {
-            return "User already exists";
+            throw new UserAlreadyExistsException("Email already exists");
         }
 
         User user = new User();
@@ -56,7 +59,7 @@ public class UserService {
     public String saveAdmin(UserRequestDto userRequestDto){
 
         if (userRepository.existsByEmail(userRequestDto.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            throw new UserAlreadyExistsException("Email already exists");
         }
 
         User user = new User();
@@ -84,7 +87,7 @@ public class UserService {
         Optional<User> user = userRepository.findById(id);
 
         if (user.isEmpty()) {
-            return null;
+            throw new UserNotFoundException("User not found");
         }
 
         return entityToResponse(user.get());
@@ -96,14 +99,14 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findById(id);
 
         if (optionalUser.isEmpty()) {
-            return null;
+            throw new UserNotFoundException("User not found");
         }
 
         User user = optionalUser.get();
 
         user.setName(userRequestDto.getName());
         user.setEmail(userRequestDto.getEmail());
-        user.setPassword(userRequestDto.getPassword());
+        user.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
 
         userRepository.save(user);
 
@@ -114,7 +117,7 @@ public class UserService {
     public String deleteUser(Long id) {
 
         if (!userRepository.existsById(id)) {
-            return "User not found";
+            throw new UserNotFoundException("User not found");
         }
 
         userRepository.deleteById(id);
@@ -136,14 +139,15 @@ public class UserService {
     public AuthResponse login(LoginRequest request) {
         Optional<User> optionalUser = userRepository.findByEmail(request.getEmail());
 
-        if(optionalUser.isEmpty())
-            throw new RuntimeException("Email not found");
+        if (optionalUser.isEmpty()) {
+            throw new InvalidCredentialsException("Invalid email or password");
+        }
 
         User user = optionalUser.get();
 
 
-        if(!passwordEncoder.matches(request.getPassword(), user.getPassword())){
-            throw new RuntimeException("Incorrect Password");
+        if (!passwordEncoder.matches(request.getPassword(),user.getPassword())) {
+            throw new InvalidCredentialsException("Invalid email or password");
         }
 
         String token  = jwtService.generateToken(user);
@@ -155,13 +159,22 @@ public class UserService {
     public AuthResponse adminLogin(LoginRequest loginRequest) {
         Optional<User> optionalUser = userRepository.findByEmail(loginRequest.getEmail());
 
-        if(optionalUser.isEmpty())
-            throw new RuntimeException("Admin does not exists");
+        if (optionalUser.isEmpty()) {
+            throw new InvalidCredentialsException(
+                    "Invalid email or password"
+            );
+        }
 
         User user = optionalUser.get();
 
-        if(!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword()))
-            throw new RuntimeException("Incorrect Password");
+        if (!passwordEncoder.matches(
+                loginRequest.getPassword(),
+                user.getPassword())) {
+
+            throw new InvalidCredentialsException(
+                    "Invalid email or password"
+            );
+        }
 
         String token = jwtService.generateToken(user);
 

@@ -3,6 +3,7 @@ package com.ecom.productservice.service;
 import com.ecom.productservice.dto.ProductRequestDto;
 import com.ecom.productservice.dto.ProductResponseDto;
 import com.ecom.productservice.entity.Product;
+import com.ecom.productservice.exception.InsufficientStockException;
 import com.ecom.productservice.exception.ProductNotFoundException;
 import com.ecom.productservice.repository.ProductRepository;
 import org.slf4j.Logger;
@@ -166,10 +167,10 @@ public class ProductService {
 
         Product product = productRepository.findById(productId)
                 .orElseThrow(() ->
-                        new RuntimeException("Product not found"));
+                        new ProductNotFoundException("Product not found"));
 
         if (product.getQuantity() < quantity) {
-            throw new RuntimeException("Insufficient stock");
+            throw new InsufficientStockException("Insufficient stock");
         }
 
         product.setQuantity(product.getQuantity() - quantity);
@@ -182,7 +183,7 @@ public class ProductService {
 
         Product product = productRepository.findById(productId)
                 .orElseThrow(() ->
-                        new RuntimeException("Product not found"));
+                        new ProductNotFoundException("Product not found"));
 
         product.setQuantity(product.getQuantity() + quantity);
 
