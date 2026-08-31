@@ -3,7 +3,6 @@ package com.ecom.productservice.controller;
 import com.ecom.productservice.dto.ProductRequestDto;
 import com.ecom.productservice.dto.ProductResponseDto;
 import com.ecom.productservice.entity.Product;
-import com.ecom.productservice.exception.QuantityLessException;
 import com.ecom.productservice.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +39,6 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<String> addProduct(
             @Valid @RequestBody ProductRequestDto productRequestDto) {
-
-        if (productRequestDto.getQuantity() < 1) {
-            throw new QuantityLessException("Quantity must not be less than 1");
-        }
 
         String response = productService.addProduct(productRequestDto);
 

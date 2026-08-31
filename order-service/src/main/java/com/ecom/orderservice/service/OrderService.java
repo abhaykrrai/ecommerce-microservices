@@ -12,6 +12,7 @@ import com.ecom.orderservice.entity.OrderItem;
 import com.ecom.orderservice.entity.OrderStatus;
 import com.ecom.orderservice.entity.PaymentMethod;
 import com.ecom.orderservice.entity.PaymentStatus;
+import com.ecom.orderservice.exception.*;
 import com.ecom.orderservice.feign.CartClient;
 import com.ecom.orderservice.feign.PaymentClient;
 import com.ecom.orderservice.feign.ProductClient;
@@ -76,7 +77,7 @@ public class OrderService {
         UserResponseDto user = userClient.getUserById(userId);
 
         if (user == null) {
-            return "User not found";
+            throw new UserNotFoundException("User not Found");
         }
 
         System.out.println("ORDER USER EMAIL = " + user.getEmail());
@@ -89,7 +90,7 @@ public class OrderService {
                 cartClient.getCart();
 
         if (cartItems == null || cartItems.isEmpty()) {
-            return "Cart is empty";
+            throw new CartEmptyException("Cart is Empty");
         }
 
         // ============================
@@ -116,8 +117,8 @@ public class OrderService {
                     );
 
             if (product.getQuantity() < item.getQuantity()) {
-                return "Insufficient stock for "
-                        + product.getName();
+                throw new InsufficientStockException(
+                        "Insufficient stock for " + product.getName());
             }
 
             total += product.getPrice()
@@ -156,7 +157,7 @@ public class OrderService {
 
         } else {
 
-            return "Payment Failed";
+            throw new PaymentFailedException("Payment failed");
         }
 
         // ============================
@@ -277,13 +278,15 @@ public class OrderService {
                         .getPrincipal();
 
         if (optionalOrder.isEmpty()) {
-            return "User has no order";
+            throw new UserNotFoundException(
+                    "Order not found"
+            );
         }
 
         Order order = optionalOrder.get();
 
         if (!order.getUserId().equals(userId)) {
-            throw new RuntimeException(
+            throw new OrderAccessDeniedException(
                     "You can't cancel the order"
             );
         }
