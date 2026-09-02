@@ -7,15 +7,18 @@ import com.com.cartservice.entity.CartItem;
 import com.com.cartservice.feign.UserClient;
 import com.com.cartservice.service.CartService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/cart")
+@Validated
 public class CartController {
 
     @Autowired
@@ -44,7 +47,9 @@ public class CartController {
     @PutMapping("/{cartItemId}")
     public ResponseEntity<String> updateQuantity(
             @PathVariable Long cartItemId,
-            @RequestParam Integer quantity) {
+            @RequestParam
+            @Min(value = 1, message = "Quantity must be at least 1")
+            Integer quantity) {
 
         return new ResponseEntity<>(
                 cartService.updateQuantity(cartItemId, quantity),
