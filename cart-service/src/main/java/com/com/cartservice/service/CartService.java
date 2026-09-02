@@ -4,11 +4,15 @@ import com.com.cartservice.dto.CartRequestDto;
 import com.com.cartservice.dto.ProductResponseDto;
 import com.com.cartservice.entity.Cart;
 import com.com.cartservice.entity.CartItem;
+import com.com.cartservice.exception.CartAccessDeniedException;
+import com.com.cartservice.exception.CartItemNotFoundException;
+import com.com.cartservice.exception.CartNotFoundException;
 import com.com.cartservice.exception.ProductIsLessOrderException;
 import com.com.cartservice.exception.ProductNotFoundException;
 import com.com.cartservice.feign.ProductClient;
 import com.com.cartservice.repository.CartItemRepository;
 import com.com.cartservice.repository.CartRepository;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -45,8 +49,14 @@ public class CartService {
 
         Long userId = getLoggedInUserId();
 
-        ProductResponseDto product =
-                productClient.getProductById(cartRequestDto.getProductId());
+        ProductResponseDto product ;
+
+        try{
+            product =
+                    productClient.getProductById(cartRequestDto.getProductId());
+        } catch (FeignException.NotFound e) {
+            throw new ProductNotFoundException("Product not found");
+        }
 
         if (product == null) {
             throw new ProductNotFoundException("Product not found");
@@ -74,7 +84,8 @@ public class CartService {
 
             cartItem = optionalCartItem.get();
 
-            int newQuantity = cartItem.getQuantity() + cartRequestDto.getQuantity();
+            int newQuantity =
+                    cartItem.getQuantity() + cartRequestDto.getQuantity();
 
             if (newQuantity > product.getQuantity()) {
                 throw new ProductIsLessOrderException("Insufficient stock");
@@ -114,17 +125,26 @@ public class CartService {
         Long userId = getLoggedInUserId();
 
         CartItem cartItem = cartItemRepository.findById(cartItemId)
-                .orElseThrow(() -> new RuntimeException("Cart item not found"));
+                .orElseThrow(() ->
+                        new CartItemNotFoundException("Cart item not found"));
 
         Cart cart = cartRepository.findById(cartItem.getCartId())
-                .orElseThrow(() -> new RuntimeException("Cart not found"));
+                .orElseThrow(() ->
+                        new CartNotFoundException("Cart not found"));
 
         if (!cart.getUserId().equals(userId)) {
-            throw new RuntimeException("You are not authorized to update this cart");
+            throw new CartAccessDeniedException(
+                    "You are not authorized to update this cart");
         }
 
-        ProductResponseDto product =
-                productClient.getProductById(cartItem.getProductId());
+        ProductResponseDto product;
+
+        try {
+            product =
+                    productClient.getProductById(cartItem.getProductId());
+        } catch (FeignException.NotFound e) {
+            throw new ProductNotFoundException("Product not found");
+        }
 
         if (quantity > product.getQuantity()) {
             throw new ProductIsLessOrderException("Insufficient stock");
@@ -142,13 +162,16 @@ public class CartService {
         Long userId = getLoggedInUserId();
 
         CartItem cartItem = cartItemRepository.findById(cartItemId)
-                .orElseThrow(() -> new RuntimeException("Cart item not found"));
+                .orElseThrow(() ->
+                        new CartItemNotFoundException("Cart item not found"));
 
         Cart cart = cartRepository.findById(cartItem.getCartId())
-                .orElseThrow(() -> new RuntimeException("Cart not found"));
+                .orElseThrow(() ->
+                        new CartNotFoundException("Cart not found"));
 
         if (!cart.getUserId().equals(userId)) {
-            throw new RuntimeException("You are not authorized to remove this cart item");
+            throw new CartAccessDeniedException(
+                    "You are not authorized to remove this cart item");
         }
 
         cartItemRepository.delete(cartItem);
