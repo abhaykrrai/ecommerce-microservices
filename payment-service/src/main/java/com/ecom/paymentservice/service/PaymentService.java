@@ -26,12 +26,16 @@ public class PaymentService {
         payment.setAmount(request.getAmount());
         payment.setPaymentMethod(request.getPaymentMethod());
 
-        // Simulate successful payment
-        payment.setPaymentStatus(PaymentStatus.SUCCESS);
+        // Payment starts in pending state
+        payment.setPaymentStatus(PaymentStatus.PENDING);
 
         payment.setTransactionId(UUID.randomUUID().toString());
-
         payment.setPaymentDate(LocalDateTime.now());
+
+        payment = paymentRepository.save(payment);
+
+        // Current implementation simulates successful payment
+        payment.setPaymentStatus(PaymentStatus.SUCCESS);
 
         payment = paymentRepository.save(payment);
 

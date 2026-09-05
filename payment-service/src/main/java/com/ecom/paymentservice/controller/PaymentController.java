@@ -3,6 +3,7 @@ package com.ecom.paymentservice.controller;
 import com.ecom.paymentservice.dto.PaymentRequestDto;
 import com.ecom.paymentservice.dto.PaymentResponseDto;
 import com.ecom.paymentservice.service.PaymentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,9 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/pay")
-    public PaymentResponseDto makePayment(@RequestBody PaymentRequestDto request) {
+    public PaymentResponseDto makePayment(
+            @Valid @RequestBody PaymentRequestDto request) {
+
         return paymentService.paymentDone(request);
     }
 }
